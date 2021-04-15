@@ -8,7 +8,7 @@ type BarProps = {
 export default function Bar({ onCopy }: BarProps) {
   return (
     <div>
-      <button onClick={onCopy}>Copy for Jira</button>
+      <button onClick={onCopy}>Copy to clipboard</button>
     </div>
   );
 }

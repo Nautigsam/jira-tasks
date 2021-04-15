@@ -6,18 +6,39 @@ import Bar from "./Bar.tsx";
 import Editor from "./Editor.tsx";
 import TasksList from "./TasksList.tsx";
 
+const initTask: Task = {
+  title: "Title",
+  context: "Context",
+  expectations: "Expectations",
+};
+
+function convertNewLines(value: string) {
+  return value.replaceAll("\n", "{n}");
+}
+function toJira(tasks: Task[]) {
+  return tasks.map((t) =>
+    `- ${t.title} / description="h3. Contexte{n}${
+      convertNewLines(t.context)
+    }{n}h3. Attendu{n}${convertNewLines(t.expectations)}"`
+  ).join("\n");
+}
+
 export default function Main() {
   const [tasks, setTasks] = useState<Task[]>([]);
   function onAdd(t: Task) {
     setTasks([...tasks, t]);
   }
   function onCopy() {
-    console.log(tasks);
+    navigator.clipboard.writeText(toJira(tasks));
   }
 
   return (
     <div>
-      <Editor onAdd={onAdd} />
+      <h1>Create Jira tasks</h1>
+      <Editor
+        task={initTask}
+        onAdd={onAdd}
+      />
       <Bar onCopy={onCopy} />
       <TasksList tasks={tasks} />
     </div>

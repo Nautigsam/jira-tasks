@@ -25,7 +25,7 @@ const html = `
 <!doctype html>
 <head>
     <meta charset="utf-8">
-    <title>Jira tasks</title>
+    <title>Create Jira tasks</title>
 </head>
 <body>
     <div id="app"></div>

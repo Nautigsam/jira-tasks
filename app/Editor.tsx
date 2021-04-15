@@ -1,17 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Html5Entities } from "https://deno.land/x/html_entities@v1.0/mod.js";
 
 import { Task } from "./models.ts";
 
 type TaskAddHandler = (t: Task) => void;
 type EditorProps = {
+  task: Task;
   onAdd: TaskAddHandler;
 };
 
-export default function Editor({ onAdd }: EditorProps) {
+function sanitizeValue(s: string) {
+  return Html5Entities.encode(s);
+}
+function sanitizeTask(t: Task) {
+  return Object.fromEntries(
+    Object.entries(t).map((e) => ([e[0], sanitizeValue(e[1])])),
+  ) as Task;
+}
+
+export default function Editor({ task, onAdd }: EditorProps) {
   const titleInput = useRef<HTMLInputElement>(null);
-  const [title, setTitle] = useState("");
-  const [context, setContext] = useState("");
-  const [expectations, setExpectations] = useState("");
+  const [title, setTitle] = useState(task.title);
+  const [context, setContext] = useState(task.context);
+  const [expectations, setExpectations] = useState(task.expectations);
 
   useEffect(() => {
     titleInput?.current?.focus();
@@ -22,7 +33,7 @@ export default function Editor({ onAdd }: EditorProps) {
     if (Object.entries(newTask).some(([_, v]) => !v)) {
       return;
     }
-    onAdd(newTask);
+    onAdd(sanitizeTask(newTask));
     setTitle("");
     setContext("");
     setExpectations("");
