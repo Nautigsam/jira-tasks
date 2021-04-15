@@ -11,11 +11,14 @@ export default function Main() {
   function onAdd(t: Task) {
     setTasks([...tasks, t]);
   }
+  function onCopy() {
+    console.log(tasks);
+  }
 
   return (
     <div>
-      <Bar />
       <Editor onAdd={onAdd} />
+      <Bar onCopy={onCopy} />
       <TasksList tasks={tasks} />
     </div>
   );

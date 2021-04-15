@@ -1,9 +1,14 @@
 import React from "react";
 
-export default function Bar() {
+type CopyHandler = () => void;
+type BarProps = {
+  onCopy: CopyHandler;
+};
+
+export default function Bar({ onCopy }: BarProps) {
   return (
     <div>
-      <p>Bar</p>
+      <button onClick={onCopy}>Copy for Jira</button>
     </div>
   );
 }

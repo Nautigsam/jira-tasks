@@ -1,4 +1,5 @@
 export type Task = {
   title: string;
-  description: string;
+  context: string;
+  expected: string;
 };
