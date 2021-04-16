@@ -6,10 +6,15 @@ import Bar from "./Bar.tsx";
 import Editor from "./Editor.tsx";
 import TasksList from "./TasksList.tsx";
 
+// const initTask: Task = {
+//   title: "Title",
+//   context: "Context",
+//   expectations: "Expectations",
+// };
 const initTask: Task = {
-  title: "Title",
-  context: "Context",
-  expectations: "Expectations",
+  title: "",
+  context: "",
+  expectations: "",
 };
 
 function convertNewLines(value: string) {
@@ -17,7 +22,7 @@ function convertNewLines(value: string) {
 }
 function toJira(tasks: Task[]) {
   return tasks.map((t) =>
-    `- ${t.title} / description="h3. Contexte{n}${
+    `- ${t.title} / description:"h3. Contexte{n}${
       convertNewLines(t.context)
     }{n}h3. Attendu{n}${convertNewLines(t.expectations)}"`
   ).join("\n");
