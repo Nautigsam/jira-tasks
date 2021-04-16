@@ -3,9 +3,10 @@
   "scripts": {
     "start": {
       "cmd": "deno run server.ts",
-      "desc": "run server",
+      "desc": "run dev server",
       "allow": ["net", "read"],
-      "unstable": true
+      "unstable": true,
+      "importmap": "import_map.json"
     }
   }
 }

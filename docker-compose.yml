@@ -1,0 +1,7 @@
+version: "3"
+services:
+  jira-tasks:
+    image: jira_tasks:latest
+    build: .
+    ports:
+      - 5000:80

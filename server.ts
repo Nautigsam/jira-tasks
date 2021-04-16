@@ -1,8 +1,5 @@
-import {
-  serve,
-  ServerRequest,
-} from "https://deno.land/std@0.93.0/http/server.ts";
-import * as path from "https://deno.land/std@0.93.0/path/mod.ts";
+import { serve, ServerRequest } from "std/http/server.ts";
+import * as path from "std/path/mod.ts";
 
 const rootDir = path.dirname(path.fromFileUrl(import.meta.url));
 const importMapPath = path.join(rootDir, "import_map.json");
@@ -21,18 +18,7 @@ for (const file of Object.keys(bundle.files)) {
   console.info("- ", file);
 }
 
-const html = `
-<!doctype html>
-<head>
-    <meta charset="utf-8">
-    <title>Create Jira tasks</title>
-</head>
-<body>
-    <div id="app"></div>
-    <script type="module" src="./bundle.js"></script>
-</body>
-</html>
-`;
+const html = await Deno.readTextFile("./index.html");
 
 const addr = "localhost:3000";
 const server = serve(addr);
