@@ -7,6 +7,8 @@ Prerequisites:
 * docker-compose
 
 ```
+$ git clone https://framagit.org/Nautigsam/jira-tasks.git
+$ cd jira-tasks
 # Start
 $ docker-compose up -d
 # Stop
