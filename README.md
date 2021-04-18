@@ -4,10 +4,20 @@
 
 Prerequisites:
 * docker
+
+```
+$ docker run --rm -p 5000:80 nautigsam/jira-tasks
+```
+Then go to http://localhost:5000.
+
+## Run from sources
+
+Prerequisites:
+* docker
 * docker-compose
 
 ```
-$ git clone https://framagit.org/Nautigsam/jira-tasks.git
+$ git clone https://github.com/Nautigsam/jira-tasks.git
 $ cd jira-tasks
 # Start
 $ docker-compose up -d
@@ -15,7 +25,7 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
-## Dev server
+### Run dev server
 
 Prerequisites:
 * [Deno](https://deno.land/#installation) >= 1.9.0
