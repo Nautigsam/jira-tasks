@@ -105,7 +105,7 @@ export default function Editor({ onAdd }: EditorProps) {
         onChange={onTitleChange}
         onKeyPress={onKeyPressInput}
         required
-        placeholder="Title"
+        placeholder="Titre"
       />
       <div style={textareaStyle}>
         <textarea
@@ -115,7 +115,7 @@ export default function Editor({ onAdd }: EditorProps) {
           onChange={onContextChange}
           onKeyPress={onKeyPressTextArea}
           required
-          placeholder="Context"
+          placeholder="Contexte"
         >
         </textarea>
         <textarea
@@ -125,7 +125,7 @@ export default function Editor({ onAdd }: EditorProps) {
           onChange={onExpectationsChange}
           onKeyPress={onKeyPressTextArea}
           required
-          placeholder="Expectactions"
+          placeholder="Attendu"
         >
         </textarea>
       </div>

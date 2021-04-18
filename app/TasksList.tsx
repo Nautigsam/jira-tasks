@@ -68,13 +68,13 @@ function TaskItem({ task }: TaskItemProps) {
           </h2>
           <div style={contentStyle}>
             <div>
-              <h3 style={noMargin}>Context</h3>
+              <h3 style={noMargin}>Contexte</h3>
               <p style={paragraphStyle}>
                 {convertNewLines(t.context)}
               </p>
             </div>
             <div>
-              <h3 style={sectionMargin}>Expected</h3>
+              <h3 style={sectionMargin}>Attendu</h3>
               <p style={paragraphStyle}>
                 {convertNewLines(t.expectations)}
               </p>
