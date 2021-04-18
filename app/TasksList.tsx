@@ -10,10 +10,6 @@ type TasksListProps = {
   tasks: Task[];
 };
 
-function convertNewLines(value: string) {
-  return value.replaceAll("\n", "\u000A");
-}
-
 function TaskItem({ task }: TaskItemProps) {
   const t = task;
   const [isCollapsed, setCollapsed] = useState(true);
