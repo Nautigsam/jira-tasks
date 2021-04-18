@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { Html5Entities } from "https://deno.land/x/html_entities@v1.0/mod.js";
 
 import { Task } from "./models.ts";
 
 type TaskAddHandler = (t: Task) => void;
 type EditorProps = {
-  task: Task;
   onAdd: TaskAddHandler;
 };
 
@@ -18,11 +17,11 @@ function sanitizeTask(t: Task) {
   ) as Task;
 }
 
-export default function Editor({ task, onAdd }: EditorProps) {
+export default function Editor({ onAdd }: EditorProps) {
   const titleInput = useRef<HTMLInputElement>(null);
-  const [title, setTitle] = useState(task.title);
-  const [context, setContext] = useState(task.context);
-  const [expectations, setExpectations] = useState(task.expectations);
+  const [title, setTitle] = useState("");
+  const [context, setContext] = useState("");
+  const [expectations, setExpectations] = useState("");
 
   useEffect(() => {
     titleInput?.current?.focus();
@@ -64,8 +63,38 @@ export default function Editor({ task, onAdd }: EditorProps) {
     }
   }
 
+  const verticalFlex: CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    height: "100%",
+  };
+  const titleFont: CSSProperties = {
+    fontSize: "2em",
+    borderStyle: "none",
+    borderBottom: "1px solid grey",
+    marginBottom: "0.5em",
+  };
+  const textareaStyle: CSSProperties = {
+    height: "100%",
+    display: "flex",
+    flexFlow: "row",
+    gap: "10px",
+  };
+  const textareaFont: CSSProperties = {
+    fontSize: "0.5em",
+    flex: "1 1 auto",
+    boxSizing: "border-box",
+    maxWidth: "50%",
+  };
+  const submitStyle: CSSProperties = {
+    marginTop: "0.5em",
+    marginBottom: "0.5em",
+    fontSize: "1.5em",
+  };
+
   return (
     <form
+      style={verticalFlex}
       onSubmit={(e) => {
         e.preventDefault();
         submit();
@@ -76,32 +105,38 @@ export default function Editor({ task, onAdd }: EditorProps) {
         type="text"
         name="title"
         value={title}
+        style={titleFont}
         onChange={onTitleChange}
         onKeyPress={onKeyPressInput}
         required
         placeholder="Title"
       />
-      <textarea
-        name="context"
-        value={context}
-        onChange={onContextChange}
-        onKeyPress={onKeyPressTextArea}
-        required
-        placeholder="Context"
-      >
-      </textarea>
-      <textarea
-        name="expectations"
-        value={expectations}
-        onChange={onExpectationsChange}
-        onKeyPress={onKeyPressTextArea}
-        required
-        placeholder="Expectactions"
-      >
-      </textarea>
+      <div style={textareaStyle}>
+        <textarea
+          name="context"
+          value={context}
+          style={textareaFont}
+          onChange={onContextChange}
+          onKeyPress={onKeyPressTextArea}
+          required
+          placeholder="Context"
+        >
+        </textarea>
+        <textarea
+          name="expectations"
+          value={expectations}
+          style={textareaFont}
+          onChange={onExpectationsChange}
+          onKeyPress={onKeyPressTextArea}
+          required
+          placeholder="Expectactions"
+        >
+        </textarea>
+      </div>
       <input
         type="submit"
         value="Add (Ctrl+Enter)"
+        style={submitStyle}
         onKeyPress={onKeyPressInput}
       />
     </form>
