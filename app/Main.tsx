@@ -7,6 +7,7 @@ import TasksList from "./TasksList.tsx";
 
 // const initTasks: Task[] = [
 //   {
+//     uuid: "fake-uuid",
 //     title: "This is a title",
 //     context: "This is a context",
 //     expectations: "These are expectations",
@@ -41,6 +42,7 @@ export default function Main() {
     display: "flex",
     flexDirection: "column",
     marginTop: "1em",
+    fontFamily: "Roboto",
   };
   const editorFlex: CSSProperties = {
     flex: "1 1 50vh",

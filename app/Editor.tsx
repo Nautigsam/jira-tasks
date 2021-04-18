@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { Html5Entities } from "https://deno.land/x/html_entities@v1.0/mod.js";
+import { v4 as uuid } from "uuid";
 
 import { Task } from "./models.ts";
 
@@ -28,7 +29,12 @@ export default function Editor({ onAdd }: EditorProps) {
   }, []);
 
   function submit() {
-    const newTask: Task = { title, context, expectations };
+    const newTask: Task = {
+      uuid: uuid(),
+      title,
+      context,
+      expectations,
+    };
     if (Object.entries(newTask).some(([_, v]) => !v)) {
       return;
     }
