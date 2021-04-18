@@ -1,4 +1,5 @@
 import React, { CSSProperties, useState } from "react";
+import MarkdownRenderer from "react-md";
 
 import { Task } from "./models.ts";
 
@@ -69,15 +70,11 @@ function TaskItem({ task }: TaskItemProps) {
           <div style={contentStyle}>
             <div>
               <h3 style={noMargin}>Contexte</h3>
-              <p style={paragraphStyle}>
-                {convertNewLines(t.context)}
-              </p>
+              <MarkdownRenderer markdown={t.context}></MarkdownRenderer>
             </div>
             <div>
               <h3 style={sectionMargin}>Attendu</h3>
-              <p style={paragraphStyle}>
-                {convertNewLines(t.expectations)}
-              </p>
+              <MarkdownRenderer markdown={t.expectations}></MarkdownRenderer>
             </div>
           </div>
         </div>}

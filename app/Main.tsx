@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState } from "react";
-import { Html5Entities } from "https://deno.land/x/html_entities@v1.0/mod.js";
+import { Html5Entities } from "html-entities";
 
 import { Task } from "./models.ts";
 
@@ -10,7 +10,7 @@ import TasksList from "./TasksList.tsx";
 //   {
 //     uuid: "fake-uuid",
 //     title: "This is a title",
-//     context: 'This is a "<a href="#">context</a>"',
+//     context: 'This is a "[context](#)"',
 //     expectations: `These are expectations:
 // - to work
 // - to be nice
