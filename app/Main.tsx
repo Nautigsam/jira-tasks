@@ -1,4 +1,5 @@
 import React, { CSSProperties, useState } from "react";
+import { Html5Entities } from "https://deno.land/x/html_entities@v1.0/mod.js";
 
 import { Task } from "./models.ts";
 
@@ -9,20 +10,23 @@ import TasksList from "./TasksList.tsx";
 //   {
 //     uuid: "fake-uuid",
 //     title: "This is a title",
-//     context: "This is a context",
-//     expectations: "These are expectations",
+//     context: 'This is a "<a href="#">context</a>"',
+//     expectations: `These are expectations:
+// - to work
+// - to be nice
+// `,
 //   },
 // ];
 const initTasks: Task[] = [];
 
-function convertNewLines(value: string) {
-  return value.replaceAll("\n", "{n}");
+function sanitizeForJira(value: string) {
+  return Html5Entities.encode(value).replaceAll("\n", "{n}");
 }
 function toJira(tasks: Task[]) {
   return tasks.map((t) =>
     `- ${t.title} / description:"h3. Contexte{n}${
-      convertNewLines(t.context)
-    }{n}h3. Attendu{n}${convertNewLines(t.expectations)}"`
+      sanitizeForJira(t.context)
+    }{n}h3. Attendu{n}${sanitizeForJira(t.expectations)}"`
   ).join("\n");
 }
 

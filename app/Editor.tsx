@@ -1,5 +1,4 @@
 import React, { CSSProperties, useEffect, useRef, useState } from "react";
-import { Html5Entities } from "https://deno.land/x/html_entities@v1.0/mod.js";
 import { v4 as uuid } from "uuid";
 
 import { Task } from "./models.ts";
@@ -8,15 +7,6 @@ type TaskAddHandler = (t: Task) => void;
 type EditorProps = {
   onAdd: TaskAddHandler;
 };
-
-function sanitizeValue(s: string) {
-  return Html5Entities.encode(s);
-}
-function sanitizeTask(t: Task) {
-  return Object.fromEntries(
-    Object.entries(t).map((e) => ([e[0], sanitizeValue(e[1])])),
-  ) as Task;
-}
 
 export default function Editor({ onAdd }: EditorProps) {
   const titleInput = useRef<HTMLInputElement>(null);
@@ -38,7 +28,7 @@ export default function Editor({ onAdd }: EditorProps) {
     if (Object.entries(newTask).some(([_, v]) => !v)) {
       return;
     }
-    onAdd(sanitizeTask(newTask));
+    onAdd(newTask);
     setTitle("");
     setContext("");
     setExpectations("");
