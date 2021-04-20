@@ -2,8 +2,9 @@
     "compilerOptions": {
         "lib": [
             "deno.ns",
+            "DOM",
             "ESNext",
-            "DOM"
+            "webworker"
         ]
     }
 }

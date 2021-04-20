@@ -2,8 +2,7 @@
   "$schema": "https://deno.land/x/denon@2.4.7/schema.json",
   "scripts": {
     "start": {
-      "cmd": "deno run server.ts",
-      "desc": "run dev server",
+      "cmd": "deno run dev_server.ts",
       "allow": ["net", "read"],
       "unstable": true,
       "importmap": "import_map.json"
